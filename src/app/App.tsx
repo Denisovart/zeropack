@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.scss"
+import classes from "./App.module.scss"
 
 export const App = () => {
 
@@ -20,6 +20,7 @@ export const App = () => {
             </h1>
             <button
                 onClick={handleAddCount}
+                className={classes.button}
             >
                 <div>
                     +1
