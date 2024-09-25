@@ -11,7 +11,10 @@ export const App = () => {
 
     return (
         <div>
-            Hello WebPack!adsasd
+            Hello WebPack!
+            <div>
+                Check hot reload or something
+            </div>
             <h1>
                 {count}
             </h1>
