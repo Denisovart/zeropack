@@ -1,5 +1,5 @@
 import { useState } from "react";
-import classes from "./App.module.scss"
+import s from "./App.module.scss"
 
 export const App = () => {
 
@@ -12,19 +12,14 @@ export const App = () => {
     return (
         <div>
             Hello WebPack!
-            <div>
-                Check hot reload or something
-            </div>
             <h1>
                 {count}
             </h1>
             <button
                 onClick={handleAddCount}
-                className={classes.button}
+                className={s.button}
             >
-                <div>
-                    +1
-                </div>
+                +1
             </button>
         </div>
     );

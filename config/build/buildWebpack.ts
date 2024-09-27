@@ -29,7 +29,3 @@ export function buildWebpack(options: BuildOptions): Configuration {
         devtool: isDev ? 'inline-source-map' : false
     }
 }
-
-const sum = (a: number, b: number) => {
-    return a + b
-}
