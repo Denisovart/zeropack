@@ -6,6 +6,8 @@ import { buildPlugins } from "./buildPlugins"
 import { buildResolver } from "./buildResolvers"
 import { BuildOptions } from "./types/types"
 
+//TO-DO refactor on FSD
+
 export function buildWebpack(options: BuildOptions): Configuration {
 
     const { mode, paths } = options
