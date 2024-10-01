@@ -4,8 +4,8 @@ import { buildWebpack } from './config/build/buildWebpack'
 import { BuildPaths, BundlerMode } from './config/build/types/types'
 
 interface EnvVariables {
-    mode: BundlerMode,
-    port: number,
+    mode?: BundlerMode,
+    port?: number,
 }
 
 export default (env: EnvVariables) => {
@@ -20,7 +20,7 @@ export default (env: EnvVariables) => {
     const config = buildWebpack({
         port: env.port ?? 3000,
         mode: env.mode ?? "development",
-        paths: paths
+        paths: paths,
     })
     
     return config

@@ -1,6 +1,9 @@
+import { DefinePlugin, ProgressPlugin, type Configuration } from "webpack";
+
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import { ProgressPlugin, type Configuration } from "webpack";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin" 
+
 import { BuildOptions } from "./types/types";
 
 export function buildPlugins({ mode, paths }: BuildOptions): Configuration['plugins'] {
@@ -12,11 +15,15 @@ export function buildPlugins({ mode, paths }: BuildOptions): Configuration['plug
         new HtmlWebpackPlugin({ 
             template: paths.html
         }),
+        new DefinePlugin({
+            __ISDEV: isDev,
+        }),
     ]
 
     if (isDev) {
         plugins.push(
             new ProgressPlugin(),
+            new ForkTsCheckerWebpackPlugin() // Параллельная проверка типов, обходя сборку
         )
     }
 
