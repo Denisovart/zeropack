@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import type { ModuleOptions } from "webpack";
 import { BuildOptions } from "./types/types";
+import ReactRefreshTypeScript from "react-refresh-typescript"
 
 export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
 
@@ -32,7 +33,10 @@ export function buildLoaders({ mode }: BuildOptions): ModuleOptions['rules'] {
             {
                 loader: "ts-loader",
                 options: {
-                    transpileOnly: true
+                    getCustomTransformers: () => ({ // для HMR
+                        before: [isDev && ReactRefreshTypeScript()].filter(Boolean)
+                    }),
+                    transpileOnly: isDev,
                 }
             }
         ],

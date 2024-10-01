@@ -1,8 +1,10 @@
 import { DefinePlugin, ProgressPlugin, type Configuration } from "webpack";
+import path from "path"
 
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin" 
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
 
 import { BuildOptions } from "./types/types";
 
@@ -13,7 +15,8 @@ export function buildPlugins({ mode, paths }: BuildOptions): Configuration['plug
 
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({ 
-            template: paths.html
+            template: paths.html,
+            favicon: path.resolve(paths.public, "favicon.ico")
         }),
         new DefinePlugin({
             __ISDEV: isDev,
@@ -23,7 +26,8 @@ export function buildPlugins({ mode, paths }: BuildOptions): Configuration['plug
     if (isDev) {
         plugins.push(
             new ProgressPlugin(),
-            new ForkTsCheckerWebpackPlugin() // Параллельная проверка типов, обходя сборку
+            new ForkTsCheckerWebpackPlugin(), // Параллельная проверка типов, обходя сборку
+            new ReactRefreshWebpackPlugin(), // для HMR
         )
     }
 
