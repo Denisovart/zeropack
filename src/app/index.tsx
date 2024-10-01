@@ -1,8 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Providers } from './providers'
-
-import { router } from './router'
+import { router } from '@/app/router'
+import { Providers } from '@/app/providers'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
