@@ -5,6 +5,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin" 
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
+import CopyPlugin from "copy-webpack-plugin"
 
 import { BuildOptions } from "./types/types";
 
@@ -37,6 +38,14 @@ export function buildPlugins({ mode, paths }: BuildOptions): Configuration['plug
                 filename: "css/[name].[contenthash:8].css",
                 chunkFilename: "css/[name].[contenthash:8].css"
             }),
+            new CopyPlugin({
+                patterns: [
+                    {
+                        from: path.resolve(paths.public, "locales"),
+                        to: path.resolve(paths.output, "locales")
+                    }
+                ]
+            })
         )
     }
 
